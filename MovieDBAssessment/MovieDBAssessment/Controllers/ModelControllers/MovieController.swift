@@ -7,15 +7,18 @@
 //
 
 import Foundation
+import UIKit
 
 class MovieController {
     
+    static let shared = MovieController()
     // Pass in base URL and set it as baseURL
     let baseURL = URL(string: MovieConstants.baseURL)
     
     func getMovies(with searchTerm: String, completion: @escaping ([Movies]) -> Void) {
         
         guard let url = baseURL else {completion([]); return}
+        
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
         let keyQueryItem = URLQueryItem(name: MovieConstants.keyQueryItem, value: searchTerm)
         
@@ -42,5 +45,31 @@ class MovieController {
                 completion([])
             }
         }; dataTask.resume()
+        print(finalURL)
+    }
+    
+    func getImage(for item: Movies, completion: @escaping (UIImage?) -> Void) {
+        guard let imageURLAsString = item.image,
+            let url = URL(string: imageURLAsString) else {
+                print("Item did not have an image available at URL provided")
+                completion(nil)
+                return
+        }
+        
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            if let error = error {
+                print("Error retrieving info from Apple: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+            guard let data = data else {
+                print("Could not retrieve data")
+                completion(nil)
+                return
+            }
+            
+            let image = UIImage(data: data)
+            completion(image)
+        }.resume()
     }
 }

@@ -16,7 +16,7 @@ struct TopLevelDictionary: Decodable {
 
 struct Movies: Decodable {
     
-    let image: String //Change with keys
+    let image: String? //Change with keys
     let title: String
     let overview: String
     let rating: Double //Change with keys

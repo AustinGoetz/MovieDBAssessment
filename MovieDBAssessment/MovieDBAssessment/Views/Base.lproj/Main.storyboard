@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Movie Table View Controller-->
         <scene sceneID="DuF-eN-2uP">
             <objects>
-                <tableViewController id="VrC-md-54Z" sceneMemberID="viewController">
+                <tableViewController id="VrC-md-54Z" customClass="MovieTableViewController" customModule="MovieDBAssessment" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="250" estimatedRowHeight="250" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bry-Wb-7aq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,7 +32,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="250" id="CKh-3Q-qR4">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="movieCell" rowHeight="250" id="CKh-3Q-qR4" customClass="MovieTableViewCell" customModule="MovieDBAssessment" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="80" width="414" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CKh-3Q-qR4" id="x81-nv-aca">
@@ -80,6 +80,12 @@
                                         <constraint firstItem="Q2x-7j-GQN" firstAttribute="leading" secondItem="sEc-TG-XtX" secondAttribute="trailing" constant="10" id="wCy-fc-6GQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="movieImageView" destination="sEc-TG-XtX" id="bXs-yR-R5K"/>
+                                    <outlet property="movieOverviewLabel" destination="H3U-3b-bLN" id="N8b-s7-jDa"/>
+                                    <outlet property="movieRatingLabel" destination="6eU-BT-QtR" id="vN7-Ka-tto"/>
+                                    <outlet property="movieTitleLabel" destination="mRX-kK-MP2" id="fy2-iM-pZf"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -87,6 +93,9 @@
                             <outlet property="delegate" destination="VrC-md-54Z" id="oe6-cv-7gT"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="searchBar" destination="zrH-je-FrA" id="igp-Eh-Evd"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOz-C2-g0Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
